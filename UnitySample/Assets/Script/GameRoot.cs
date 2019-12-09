@@ -6,11 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameRoot : MonoBehaviour
 {
-
+    private UDPClient udpClient;
     private ClientManage clientManage = new ClientManage();
     private LoginRequest loginRequest;
     private RegisterRequest registerRequest;
     public string ip = "127.0.0.1";
+    public int udpPort = 8886;
     public int port = 8885;
     public InputField nameInput;
     public InputField pwdInput;
@@ -27,6 +28,7 @@ public class GameRoot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        udpClient = new UDPClient(udpPort);
         clientManage.OnInit(ip, port);
         loginRequest = new LoginRequest();
         registerRequest = new RegisterRequest();
